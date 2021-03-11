@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 1 task
+        function findLongestWord(str){
+            let longgestIndex = 0
+            let longgestLength = 0
+            let split = str.split(' ')
+            split.map((item, index)=>{
+                if(item.length > longgestLength){
+                    longgestLength = item.length
+                    longgestIndex = index
+                }
+            })
+            return split[longgestIndex]
+        }
+        console.log("1 - "+findLongestWord("знайти найдовше слово в строці"))
+
+        //2 task
+        function formatString(str) {
+            if (str.length > 40){
+                return str.slice(0, 40) + "..."
+            }else return str
+        }
+        console.log("2 - "+formatString("знайти найдовше слово в строці тай таке, ніц не зробиш))))"))
+
+        //3 task
+        function checkForSpam(str) {
+            str = str.toLowerCase()
+            return (str.includes("spam") || str.includes("sale") )
+        }
+        console.log("3 - "+checkForSpam("знайти найдовше sale в строці тай таке, ніц не зробиш))))"))
+
+        //4 task
+
+        function isLoginValid(login) {
+            return (login.length >= 4 && login.length < 16)
+        }
+        function isLoginUnique(arr, login) {
+            return !arr.includes(login)
+        }
+
+        function addLogin(arrLogins, login ) {
+            if(!isLoginValid(login)) return "Ошибка! 4<login<16"
+            if(!isLoginUnique(arrLogins, login)) return "Error login is used"
+            arrLogins.push(login)
+            return "login add "+ arrLogins
+        }
+        console.log("4 - "+addLogin(["знайти", "найдовше", "sale"] , "sale"))
+        console.log("4 - "+addLogin(["знайти", "найдовше", "sale"] , "sale2"))
+
+        //5
+        const users = [
+            { name: 'Alex', age: 24, country: 'USA', gender: 'M', email: 'alex@mail.com' },
+            { name: 'Lina', age: 23, country: 'Russia', gender: 'F', email: 'lina1997@mail.com' },
+            { name: 'John', age: 28, country: 'UK', gender: 'M', email: 'jo@mail.com' },
+            { name: 'Jack', age: 32, country: 'Australia', gender: 'M', email: 'jack23@mail.com' },
+            { name: 'Ihor', age: 29, country: 'Ukraine', gender: 'M', email: 'jimbim@mail.com' },
+            { name: 'Kate', age: 31, country: 'UK', gender: 'F', email: 'kater@mail.com' },
+            { name: 'Lilia', age: 20, country: 'USA', gender: 'F', email: 'flavor@mail.com' },
+        ];
+        console.log("5.1 - ")
+        console.log(users.map(user=>{
+           return user.name
+        }))
+
+        let ar2 = []
+        let ar3 = []
+        let ar4 = []
+        let ar5 = []
+        let obj = {}
+        users.forEach(item=>{
+            if (item.country == "USA") ar2.push(item.name)
+            if (item.gender == "F") ar3.push(item.name)
+            if (item.age > 25) ar4.push(item.name)
+            if (!ar5.includes(item.country)) ar5.push(item.country)
+            obj[item.name] = item
+        })
+        console.log("5.2 - ")
+        console.log(ar2)
+        console.log("5.3 - ")
+        console.log(ar3)
+        console.log("5.4 - ")
+        console.log(ar4)
+        console.log("5.5 - ")
+        console.log(ar5)
+        console.log("5.6 - ")
+        console.log(users.find(item=> item.email == "kater@mail.com"))
+        console.log("5.7 - ")
+        console.log(users.sort((item1, item2)=> item1.age-item2.age))
+        console.log("5.8 - ")
+        console.log(obj)
+
+    </script>
+</body>
+</html>
