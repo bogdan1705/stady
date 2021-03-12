@@ -55,15 +55,7 @@
         console.log("4 - "+addLogin(["знайти", "найдовше", "sale"] , "sale2"))
 
         //5
-        const users = [
-            { name: 'Alex', age: 24, country: 'USA', gender: 'M', email: 'alex@mail.com' },
-            { name: 'Lina', age: 23, country: 'Russia', gender: 'F', email: 'lina1997@mail.com' },
-            { name: 'John', age: 28, country: 'UK', gender: 'M', email: 'jo@mail.com' },
-            { name: 'Jack', age: 32, country: 'Australia', gender: 'M', email: 'jack23@mail.com' },
-            { name: 'Ihor', age: 29, country: 'Ukraine', gender: 'M', email: 'jimbim@mail.com' },
-            { name: 'Kate', age: 31, country: 'UK', gender: 'F', email: 'kater@mail.com' },
-            { name: 'Lilia', age: 20, country: 'USA', gender: 'F', email: 'flavor@mail.com' },
-        ];
+
         console.log("5.1 - ")
         console.log(users.map(user=>{
            return user.name
@@ -96,6 +88,58 @@
         console.log("5.8 - ")
         console.log(obj)
 
+        const users = [
+            { name: 'Alex', age: 24, country: 'USA', gender: 'M', email: 'alex@mail.com' },
+            { name: 'Lina', age: 23, country: 'Russia', gender: 'F', email: 'lina1997@mail.com' },
+            { name: 'John', age: 28, country: 'UK', gender: 'M', email: 'jo@mail.com' },
+            { name: 'Jack', age: 32, country: 'Australia', gender: 'M', email: 'jack23@mail.com' },
+            { name: 'Ihor', age: 29, country: 'Ukraine', gender: 'M', email: 'jimbim@mail.com' },
+            { name: 'Kate', age: 31, country: 'USA', gender: 'F', email: 'kater@mail.com' },
+            { name: 'Lilia', age: 20, country: 'USA', gender: 'F', email: 'flavor@mail.com' },
+        ];
+
+
+        function getUsersByCountry(arr){
+             return arr.filter(item=>item.country == "USA")
+        }
+        function getUsersByGender(arr){
+             return arr.filter(item=>item.gender == "F")
+        }
+        function getOldestUser(arr){
+             return [arr.reduce((prevArr,item)=> prevArr.age < item.age ? item : prevArr)]
+        }
+
+
+        function compose(...filters) {
+            return function (users) {
+                return filters.reduce((perArr,item)=>{
+                    console.log(item(perArr))
+                    return  item(perArr)
+                },users);
+            }
+        }
+        function compose2(...filters) {
+            return function (users) {
+                return filters.reduceRight((perArr,item)=>{
+                    return  item(perArr)
+                },users);
+            }
+        }
+
+
+
+        console.log(compose(
+            getUsersByCountry,
+            getUsersByGender,
+            getOldestUser
+        )(users))
+
+
+        console.log(compose2(
+            getUsersByCountry,
+            getUsersByGender,
+            getOldestUser
+        )(users))
     </script>
 </body>
 </html>
