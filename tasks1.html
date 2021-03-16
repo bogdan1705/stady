@@ -55,91 +55,686 @@
         console.log("4 - "+addLogin(["знайти", "найдовше", "sale"] , "sale2"))
 
         //5
-
-        console.log("5.1 - ")
-        console.log(users.map(user=>{
-           return user.name
-        }))
-
-        let ar2 = []
-        let ar3 = []
-        let ar4 = []
-        let ar5 = []
-        let obj = {}
-        users.forEach(item=>{
-            if (item.country == "USA") ar2.push(item.name)
-            if (item.gender == "F") ar3.push(item.name)
-            if (item.age > 25) ar4.push(item.name)
-            if (!ar5.includes(item.country)) ar5.push(item.country)
-            obj[item.name] = item
-        })
-        console.log("5.2 - ")
-        console.log(ar2)
-        console.log("5.3 - ")
-        console.log(ar3)
-        console.log("5.4 - ")
-        console.log(ar4)
-        console.log("5.5 - ")
-        console.log(ar5)
-        console.log("5.6 - ")
-        console.log(users.find(item=> item.email == "kater@mail.com"))
-        console.log("5.7 - ")
-        console.log(users.sort((item1, item2)=> item1.age-item2.age))
-        console.log("5.8 - ")
-        console.log(obj)
-
-        const users = [
-            { name: 'Alex', age: 24, country: 'USA', gender: 'M', email: 'alex@mail.com' },
-            { name: 'Lina', age: 23, country: 'Russia', gender: 'F', email: 'lina1997@mail.com' },
-            { name: 'John', age: 28, country: 'UK', gender: 'M', email: 'jo@mail.com' },
-            { name: 'Jack', age: 32, country: 'Australia', gender: 'M', email: 'jack23@mail.com' },
-            { name: 'Ihor', age: 29, country: 'Ukraine', gender: 'M', email: 'jimbim@mail.com' },
-            { name: 'Kate', age: 31, country: 'USA', gender: 'F', email: 'kater@mail.com' },
-            { name: 'Lilia', age: 20, country: 'USA', gender: 'F', email: 'flavor@mail.com' },
-        ];
-
-
-        function getUsersByCountry(arr){
-             return arr.filter(item=>item.country == "USA")
-        }
-        function getUsersByGender(arr){
-             return arr.filter(item=>item.gender == "F")
-        }
-        function getOldestUser(arr){
-             return [arr.reduce((prevArr,item)=> prevArr.age < item.age ? item : prevArr)]
-        }
-
-
-        function compose(...filters) {
-            return function (users) {
-                return filters.reduce((perArr,item)=>{
-                    console.log(item(perArr))
-                    return  item(perArr)
-                },users);
+        // const users = [
+        //     { name: 'Alex', age: 24, country: 'USA', gender: 'M', email: 'alex@mail.com' },
+        //     { name: 'Lina', age: 23, country: 'Russia', gender: 'F', email: 'lina1997@mail.com' },
+        //     { name: 'John', age: 28, country: 'UK', gender: 'M', email: 'jo@mail.com' },
+        //     { name: 'Jack', age: 32, country: 'Australia', gender: 'M', email: 'jack23@mail.com' },
+        //     { name: 'Ihor', age: 29, country: 'Ukraine', gender: 'M', email: 'jimbim@mail.com' },
+        //     { name: 'Kate', age: 31, country: 'USA', gender: 'F', email: 'kater@mail.com' },
+        //     { name: 'Lilia', age: 20, country: 'USA', gender: 'F', email: 'flavor@mail.com' },
+        // ];
+        // console.log("5.1 - ")
+        // console.log(users.map(user=>{
+        //    return user.name
+        // }))
+        //
+        // let ar2 = []
+        // let ar3 = []
+        // let ar4 = []
+        // let ar5 = []
+        // let obj = {}
+        // users.forEach(item=>{
+        //     if (item.country == "USA") ar2.push(item.name)
+        //     if (item.gender == "F") ar3.push(item.name)
+        //     if (item.age > 25) ar4.push(item.name)
+        //     if (!ar5.includes(item.country)) ar5.push(item.country)
+        //     obj[item.name] = item
+        // })
+        // console.log("5.2 - ")
+        // console.log(users.reduce((prevItem, item) => {
+        //     return  item.country === "USA"? prevItem.push(item.name) : prevItem
+        //     }, []))
+        //
+        // console.log("5.3 - ")
+        // console.log(users.reduce((prevItem, item) => {
+        //     return  item.gender === "F"? item.name : prevItem
+        // }, []))
+        // console.log("5.4 - ")
+        // console.log(users.reduce((prevItem, item) => {
+        //     return  item.age > 25? item.name : prevItem
+        // }, []))
+        // console.log("5.5 - ")
+        // console.log(ar5)
+        // console.log("5.6 - ")
+        // console.log(users.find(item=> item.email == "kater@mail.com"))
+        // console.log("5.7 - ")
+        // console.log(users.sort((item1, item2)=> item1.age-item2.age))
+        // console.log("5.8 - ")
+        // console.log(users.reduce((prevItem, item)=>{
+        //     prevItem[item.name] = item
+        //     return prevItem
+        // }),{})
+        //
+        //
+        //
+        //
+        // function getUsersByCountry(arr){
+        //      return arr.filter(item=>item.country == "USA")
+        // }
+        // function getUsersByGender(arr){
+        //      return arr.filter(item=>item.gender == "F")
+        // }
+        // function getOldestUser(arr){
+        //      return [arr.reduce((prevArr,item)=> prevArr.age < item.age ? item : prevArr)]
+        // }
+        //
+        //
+        // function compose(...filters) {
+        //     return function (users) {
+        //         return filters.reduce((perArr,item)=>{
+        //             console.log(item(perArr))
+        //             return  item(perArr)
+        //         },users);
+        //     }
+        // }
+        // function compose2(...filters) {
+        //     return function (users) {
+        //         return filters.reduceRight((perArr,item)=>{
+        //             return  item(perArr)
+        //         },users);
+        //     }
+        // }
+        //
+        //
+        //
+        // console.log(compose(
+        //     getUsersByCountry,
+        //     getUsersByGender,
+        //     getOldestUser
+        // )(users))
+        //
+        //
+        // console.log(compose2(
+        //     getUsersByCountry,
+        //     getUsersByGender,
+        //     getOldestUser
+        // )(users))
+        let arr = [
+            {
+                "_id": "60507010ba9f9b741116c73d",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f",
+                "issuekey": "A0-35",
+                "projectId": "10135",
+                "options": [
+                    {
+                        "lat": 53.53398066578529,
+                        "lng": 35.28571428571428,
+                        "position": {
+                            "lat": 53.53398066578529,
+                            "lng": 35.28571428571428
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, Калужская обл., Россия, 249378",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 42.087216965637076,
+                        "lng": 75.85714285714282,
+                        "position": {
+                            "lat": 42.087216965637076,
+                            "lng": 75.85714285714282
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Кочкорский район, Киргизия",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 66.70355172043888,
+                        "lng": 89.57142857142857,
+                        "position": {
+                            "lat": 66.70355172043888,
+                            "lng": 89.57142857142857
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Красноярский край, Россия, 663230",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050abdfba9f9b741116eedd",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f",
+                "issuekey": "A0-61",
+                "projectId": "10135",
+                "options": [
+                    {
+                        "lat": 55.52307852098335,
+                        "lng": 47.28571428571428,
+                        "position": {
+                            "lat": 55.52307852098335,
+                            "lng": 47.28571428571428
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, Чувашская Респ., Россия, 429308",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 55.19827589845087,
+                        "lng": 71.28571428571426,
+                        "position": {
+                            "lat": 55.19827589845087,
+                            "lng": 71.28571428571426
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Называевск, Медвежье, Омская обл., Россия, 646012",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 66.2474038935901,
+                        "lng": 108.42857142857144,
+                        "position": {
+                            "lat": 66.2474038935901,
+                            "lng": 108.42857142857144
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Респ. Саха (Якутия), Россия, 678190",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050abf0ba9f9b741116ef5e",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f",
+                "issuekey": "BOG1-2",
+                "projectId": "10152",
+                "options": [
+                    {
+                        "lat": 55.84522173393655,
+                        "lng": 70.14285714285712,
+                        "position": {
+                            "lat": 55.84522173393655,
+                            "lng": 70.14285714285712
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, Тюменская обл., Россия, 627600",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 38.60440941365497,
+                        "lng": 11.285714285714285,
+                        "position": {
+                            "lat": 38.60440941365497,
+                            "lng": 11.285714285714285
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Тирренское море",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 36.79606907327915,
+                        "lng": 83.28571428571426,
+                        "position": {
+                            "lat": 36.79606907327915,
+                            "lng": 83.28571428571426
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Ния, Хотан, Синьцзян-Уйгурский автономный район, Китай",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 55.84522173393655,
+                        "lng": 111.28571428571429,
+                        "position": {
+                            "lat": 55.84522173393655,
+                            "lng": 111.28571428571429
+                        },
+                        "name": "Location 4",
+                        "addAddres": "Респ. Бурятия, Россия, 671730",
+                        "label": "D",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050ac01ba9f9b741116efec",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f",
+                "issuekey": "BOG1-3",
+                "projectId": "10152",
+                "options": [
+                    {
+                        "lat": 49.2597649551181,
+                        "lng": 73.57142857142854,
+                        "position": {
+                            "lat": 49.2597649551181,
+                            "lng": 73.57142857142854
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, 100000, Казахстан",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 52.79531273665144,
+                        "lng": 111.18861607142854,
+                        "position": {
+                            "lat": 52.79531273665144,
+                            "lng": 111.18861607142854
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Unnamed Road, Респ. Бурятия, Россия",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 38.12486567246549,
+                        "lng": 56.34486607142855,
+                        "position": {
+                            "lat": 38.12486567246549,
+                            "lng": 56.34486607142855
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Балканы, Туркменистан",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050ac2f7b4503256856c887",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f(2)",
+                "issuekey": "BO1-3",
+                "projectId": "1023212",
+                "options": [
+                    {
+                        "lat": 49.2597649551181,
+                        "lng": 73.57142857142854,
+                        "position": {
+                            "lat": 49.2597649551181,
+                            "lng": 73.57142857142854
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, 100000, Казахстан",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 52.79531273665144,
+                        "lng": 111.18861607142854,
+                        "position": {
+                            "lat": 52.79531273665144,
+                            "lng": 111.18861607142854
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Unnamed Road, Респ. Бурятия, Россия",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 38.12486567246549,
+                        "lng": 56.34486607142855,
+                        "position": {
+                            "lat": 38.12486567246549,
+                            "lng": 56.34486607142855
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Балканы, Туркменистан",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050ac3a7b4503256856c888",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f(2)",
+                "issuekey": "BO1-3",
+                "projectId": "1023211",
+                "options": [
+                    {
+                        "lat": 49.2597649551181,
+                        "lng": 73.57142857142854,
+                        "position": {
+                            "lat": 49.2597649551181,
+                            "lng": 73.57142857142854
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, 100000, Казахстан",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 52.79531273665144,
+                        "lng": 111.18861607142854,
+                        "position": {
+                            "lat": 52.79531273665144,
+                            "lng": 111.18861607142854
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Unnamed Road, Респ. Бурятия, Россия",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 38.12486567246549,
+                        "lng": 56.34486607142855,
+                        "position": {
+                            "lat": 38.12486567246549,
+                            "lng": 56.34486607142855
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Балканы, Туркменистан",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050bb5c7b4503256856c889",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f",
+                "issuekey": "A0-21",
+                "projectId": "10135",
+                "options": [
+                    {
+                        "lat": 55.52307852098335,
+                        "lng": 47.28571428571428,
+                        "position": {
+                            "lat": 55.52307852098335,
+                            "lng": 47.28571428571428
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, Чувашская Респ., Россия, 429308",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 55.19827589845087,
+                        "lng": 71.28571428571426,
+                        "position": {
+                            "lat": 55.19827589845087,
+                            "lng": 71.28571428571426
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Называевск, Медвежье, Омская обл., Россия, 646012",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 66.2474038935901,
+                        "lng": 108.42857142857144,
+                        "position": {
+                            "lat": 66.2474038935901,
+                            "lng": 108.42857142857144
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Респ. Саха (Якутия), Россия, 678190",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050bb647b4503256856c88a",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f",
+                "issuekey": "A0-31",
+                "projectId": "10135",
+                "options": [
+                    {
+                        "lat": 55.52307852098335,
+                        "lng": 47.28571428571428,
+                        "position": {
+                            "lat": 55.52307852098335,
+                            "lng": 47.28571428571428
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, Чувашская Респ., Россия, 429308",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 55.19827589845087,
+                        "lng": 71.28571428571426,
+                        "position": {
+                            "lat": 55.19827589845087,
+                            "lng": 71.28571428571426
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Называевск, Медвежье, Омская обл., Россия, 646012",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 66.2474038935901,
+                        "lng": 108.42857142857144,
+                        "position": {
+                            "lat": 66.2474038935901,
+                            "lng": 108.42857142857144
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Респ. Саха (Якутия), Россия, 678190",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050bb6b7b4503256856c88b",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f(2)",
+                "issuekey": "BO1-12",
+                "projectId": "1023211",
+                "options": [
+                    {
+                        "lat": 49.2597649551181,
+                        "lng": 73.57142857142854,
+                        "position": {
+                            "lat": 49.2597649551181,
+                            "lng": 73.57142857142854
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, 100000, Казахстан",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 52.79531273665144,
+                        "lng": 111.18861607142854,
+                        "position": {
+                            "lat": 52.79531273665144,
+                            "lng": 111.18861607142854
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Unnamed Road, Респ. Бурятия, Россия",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 38.12486567246549,
+                        "lng": 56.34486607142855,
+                        "position": {
+                            "lat": 38.12486567246549,
+                            "lng": 56.34486607142855
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Балканы, Туркменистан",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050bb727b4503256856c88c",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f",
+                "issuekey": "A0-41",
+                "projectId": "10135",
+                "options": [
+                    {
+                        "lat": 55.52307852098335,
+                        "lng": 47.28571428571428,
+                        "position": {
+                            "lat": 55.52307852098335,
+                            "lng": 47.28571428571428
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, Чувашская Респ., Россия, 429308",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 55.19827589845087,
+                        "lng": 71.28571428571426,
+                        "position": {
+                            "lat": 55.19827589845087,
+                            "lng": 71.28571428571426
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Называевск, Медвежье, Омская обл., Россия, 646012",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 66.2474038935901,
+                        "lng": 108.42857142857144,
+                        "position": {
+                            "lat": 66.2474038935901,
+                            "lng": 108.42857142857144
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Респ. Саха (Якутия), Россия, 678190",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
+            },
+            {
+                "_id": "6050bb877b4503256856c88d",
+                "account": "381249ea-0f75-37f3-a3d5-922f645cf89f(2)",
+                "issuekey": "BO1-34",
+                "projectId": "1023212",
+                "options": [
+                    {
+                        "lat": 49.2597649551181,
+                        "lng": 73.57142857142854,
+                        "position": {
+                            "lat": 49.2597649551181,
+                            "lng": 73.57142857142854
+                        },
+                        "name": "Location 1",
+                        "addAddres": "Unnamed Road, 100000, Казахстан",
+                        "label": "A",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 52.79531273665144,
+                        "lng": 111.18861607142854,
+                        "position": {
+                            "lat": 52.79531273665144,
+                            "lng": 111.18861607142854
+                        },
+                        "name": "Location 2",
+                        "addAddres": "Unnamed Road, Респ. Бурятия, Россия",
+                        "label": "B",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    },
+                    {
+                        "lat": 38.12486567246549,
+                        "lng": 56.34486607142855,
+                        "position": {
+                            "lat": 38.12486567246549,
+                            "lng": 56.34486607142855
+                        },
+                        "name": "Location 3",
+                        "addAddres": "Балканы, Туркменистан",
+                        "label": "C",
+                        "clickable": true,
+                        "visible": true,
+                        "color": "BF2600"
+                    }
+                ]
             }
-        }
-        function compose2(...filters) {
-            return function (users) {
-                return filters.reduceRight((perArr,item)=>{
-                    return  item(perArr)
-                },users);
+        ]
+        let arr2 = arr.reduce((prevArr, item)=>{
+            debugger
+            let index = prevArr.findIndex((el)=>el.account == item.account)
+            if(index == -1) {
+                prevArr.push({account:item.account, projectId:item.projectId, markers:{[item.issuekey]:item.options} })
+            }else if(prevArr[index].projectId == item.projectId ){
+                prevArr[index].markers[item.issuekey] = item.options
+            }else {
+
             }
-        }
+
+
+            return prevArr
+        },[])
+        console.log(arr2)
 
 
 
-        console.log(compose(
-            getUsersByCountry,
-            getUsersByGender,
-            getOldestUser
-        )(users))
 
-
-        console.log(compose2(
-            getUsersByCountry,
-            getUsersByGender,
-            getOldestUser
-        )(users))
     </script>
 </body>
 </html>
